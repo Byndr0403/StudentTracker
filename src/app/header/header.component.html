@@ -20,25 +20,40 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-               
                 <a class="nav-link active" routerLink="/">Home</a>
             </li>
+            
+
+            <ng-template [ngIf] = "userService.isAthunticated()">
+            <li class="nav-item" >
+                <a class="nav-link active" routerLink="/register">Profile</a>
+            </li>
+            
+            <li class="nav-item" > 
+                <a class="nav-link active" routerLink="/register">View Attandace</a>
+            </li>
+
+            <li class="nav-item" > 
+                <a class="nav-link active" href="" (click)="logout()">Logout</a>
+            </li>
+            
+           </ng-template>
+
+           <ng-template [ngIf] = "!userService.isAthunticated()">
             <li class="nav-item">
-           
                 <a class="nav-link active" routerLink="/register">SingnUp</a>
             </li>
             <li class="nav-item">
-             
                 <a class="nav-link active" routerLink="/login">Login</a>
             </li>
             <li class="nav-item">
-             
-                <a class="nav-link active" routerLink="/gallery">Gallary</a>
-            </li>
-            <li class="nav-item">
-               
                 <a class="nav-link active" routerLink="/footer">Contact Us</a>
             </li>
+            </ng-template>
+            <!-- <li class="nav-item">
+                <a class="nav-link active" routerLink="/gallery">Gallary</a>
+            </li> -->
+           
         </ul>
         </div>
 

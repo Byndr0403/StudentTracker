@@ -6,7 +6,7 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form >
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           
   
             <div class="divider d-flex align-items-center my-4">
@@ -14,33 +14,41 @@
             </div>
   
             <!-- Email input -->
+            <div class="form-group">  
             <div class="form-outline mb-4">
-              <input type="text" id="form3Example3" class="form-control "
+              <input type="text" id="name" class="form-control" required="true" formControlName="name"
                 placeholder=" valid Faculty Name" />
-            </div>
+            </div></div>
+
+            <div class="form-group">  
             <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control "
+                <input type="text" id="id" class="form-control" required formControlName="id"
                   placeholder="valid Faculty Id" />
-              
-              </div>
+              </div></div>
+
+              <div class="form-group">  
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example3" class="form-control "
+                <input type="password" id="password" class="form-control" required formControlName="password"
                   placeholder="valid password" />
-            
-              </div>
+              </div></div>
+
+              <div class="form-group"> 
               <div class="form-outline mb-3">
-                <input type="email" id="form3Example4" class="form-control "
+                <input type="email" id="mail" class="form-control" required formControlName="mail"
                   placeholder="valid email" />
-              </div>
+              </div></div>
   
+              <div class="form-group"> 
             <div class="form-outline mb-3">
-              <input type="text" id="form3Example4" class="form-control "
+              <input type="text" id="mobile" class="form-control" required formControlName="mobile" pattern="[6789][0-9]{9}"
                 placeholder=" +1 Mobile Number" />
-            </div>
+            </div></div>
+
+            <div class="form-group">
             <div class="form-outline mb-3">
-              <input type="text" id="form3Example4" class="form-control "
+              <input type="date" id="dob" class="form-control" required formControlName="dob"
                 placeholder="date of birth" />
-            </div>
+            </div></div>
   
   
             <div class="text-center text-lg-start mt-4 pt-2">

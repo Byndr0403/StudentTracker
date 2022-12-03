@@ -13,6 +13,10 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GallaryComponent } from './gallary/gallary.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ViewAttandanceComponent } from './view-attandance/view-attandance.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
 
 
 
@@ -28,6 +32,9 @@ import { GallaryComponent } from './gallary/gallary.component';
     RegisterComponent,
     ImageGalleryComponent,
     GallaryComponent,
+    ViewAttandanceComponent,
+    ProfileComponent,
+    FacultyHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,8 @@ import { GallaryComponent } from './gallary/gallary.component';
     RouterModule,
     ScrollViewModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule   
+    ReactiveFormsModule,
+    HttpClientModule  
 ,
  
   ],

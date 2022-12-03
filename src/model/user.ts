@@ -1,10 +1,9 @@
 export class User {
     id: String;
-    name: string;
-    password: string;
-    confPassword: string;
-    mobile: string;
+    name: String;
+    password: String;
+    mobile: String;
     mail:String;
-    dob:String;
+    dob:Date;
     gender:String;
 }
