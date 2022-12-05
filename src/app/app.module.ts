@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewAttandanceComponent } from './view-attandance/view-attandance.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
+import { QRcodeComponent } from './qrcode/qrcode.component';
 
 
 
@@ -35,6 +36,7 @@ import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
     ViewAttandanceComponent,
     ProfileComponent,
     FacultyHomeComponent,
+    QRcodeComponent,
   ],
   imports: [
     BrowserModule,
