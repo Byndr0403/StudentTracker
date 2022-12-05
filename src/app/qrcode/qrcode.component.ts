@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Course } from 'src/model/Course';
 import { UserService } from 'src/services/userService';
 
 @Component({
@@ -10,20 +12,21 @@ import { UserService } from 'src/services/userService';
 })
 export class QRcodeComponent implements OnInit{
   qrForm: FormGroup;
-  dataList: any = [];
+  dataList: Array<any> = [];
   response: any;
   button = "Load Data";
   isLoading = false;
   listAvailable: any;
   isLoaderSpinning = false;
-  coourseIteam : any = {};
+  thumbnail: any;
+ 
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,private sanitizer: DomSanitizer
    
   ){ 
     this.userService.getAllCourses().subscribe((response) => {
@@ -38,29 +41,36 @@ export class QRcodeComponent implements OnInit{
 
   ngOnInit(): void {
     this.qrForm = this.formBuilder.group({
-      coourseIteam: ['', Validators.required],
+      courseIteam: ['', Validators.required],
     });
   }
   onSubmit(){
     console.warn('course data', this.qrForm.value);
-    // this.userService.login(this.loginForm.value.id, this.loginForm.value.password).subscribe((response)=>{
-      
-    //   if(response.data == null){
-    //     alert("Invalid credentials");
-    //     this.router.navigate(['/login']);
-
-    //   }else{
-    //     sessionStorage.setItem('token',response.data);
-    //     sessionStorage.setItem('facultyId',this.loginForm.value.id);
-    //     console.warn('token', response.data);
-    //      alert("Successfully Logged in.");
-    //     this.router.navigate(['/facultyHome']);
-       
-    //   }
+     console.warn('data list', this.dataList);
+    let obj = this.dataList.filter((d) => {
+        return this.qrForm.value.courseIteam as number == d.id
+    })[0];
+   
+   
+    this.qrForm.value
+    let rqPayload = {
+      courseId:obj.id,
+      otherData : "teregarding coourse",
+      active : true,
+      createdOn : "2022-10-19",
+      courseName:obj.name
+    }
+    console.log("payload",rqPayload);
+    this.userService.generateQrCode(rqPayload).subscribe((baseImage : any)=>{
+      let objectURL = 'data:image/jpeg;base64,' + baseImage.image;
+      this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     
-    //  },
+     },
+
+      error=>console.log(error)
+      );}
+
   }
 
 
 
-}

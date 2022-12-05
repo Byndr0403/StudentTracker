@@ -7,8 +7,12 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <div>
+            <img id="myimage" [src]='thumbnail' />
+          </div>
           <form [formGroup]="qrForm" (ngSubmit)="onSubmit()">
-          
+            
   
             <div class="divider d-flex align-items-center my-4">
               <p class="text-center fw-bold mx-3 mb-0">Generate QR Code</p>
@@ -19,9 +23,9 @@
             Select Cource 
             <div class="form-group">
                 <div class="form-outline mb-4">
-                <select class="form-control">
+                <select class="form-control"  name = "courseIteam" id="courseIteam"  formControlName="courseIteam">
                     <option>Select</option>
-                      <option *ngFor="let item of this.dataList;let i = index" value="{{item}}" [selected]="i == 0"  name = "coourseIteam">
+                      <option *ngFor="let item of this.dataList;let i = index" value="{{item.id}}" [selected]="i == 0" >
                         {{item.name}}
                       </option>
                      
@@ -30,8 +34,6 @@
             </div>
   
         
-            
-  
             <div class="text-center text-lg-start mt-4 pt-2">
               <button type="submit" class="btn btn-primary btn-lg" 
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Generate QR</button>

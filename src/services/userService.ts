@@ -45,6 +45,13 @@ getAll() {
         return this.http.get<any>(`${this.baseUrl}/course/viewAll`,{headers:header});
     }
 
+    generateQrCode(payload : any) {
+        let  token = sessionStorage.getItem("token");
+        console.log("token",token);
+        let header = new HttpHeaders().set('token',''+token);
+        return this.http.post<any>(`${this.baseUrl}/qr/generate`,payload,{headers:header});
+    }
+
     public  isAthunticated(){
     let token = sessionStorage.getItem("token");
      if(token!= null && token != ''){
