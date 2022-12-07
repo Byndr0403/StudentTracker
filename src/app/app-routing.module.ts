@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CourseComponent } from './course/course.component';
 import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
 import { FooterComponent } from './footer/footer.component';
 import { GallaryComponent } from './gallary/gallary.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path:'qrCode', component : QRcodeComponent },
   { path:'viewAttandance', component : ViewAttandanceComponent },
   {path:'profile',component: ProfileComponent},
-  {path:'facultyHome',component: FacultyHomeComponent}
+  {path:'facultyHome',component: FacultyHomeComponent},
+  {path:'course',component: CourseComponent}
 
 
 ];

@@ -18,6 +18,7 @@ import { ViewAttandanceComponent } from './view-attandance/view-attandance.compo
 import { ProfileComponent } from './profile/profile.component';
 import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
 import { QRcodeComponent } from './qrcode/qrcode.component';
+import { CourseComponent } from './course/course.component';
 
 
 
@@ -37,6 +38,7 @@ import { QRcodeComponent } from './qrcode/qrcode.component';
     ProfileComponent,
     FacultyHomeComponent,
     QRcodeComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,

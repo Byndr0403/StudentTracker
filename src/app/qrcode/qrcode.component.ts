@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeStyle } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/model/Course';
 import { UserService } from 'src/services/userService';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-qrcode',
@@ -18,7 +19,16 @@ export class QRcodeComponent implements OnInit{
   isLoading = false;
   listAvailable: any;
   isLoaderSpinning = false;
+  name = 'Test display image';
   thumbnail: any;
+  public header:SafeHtml;
+  public content:SafeHtml[];
+  public image:SafeStyle;
+  retrieveResonse: any
+    message: string;
+    imageName: any;
+  base64Data: any;
+  retrievedImage: string;
  
 
 
@@ -58,19 +68,52 @@ export class QRcodeComponent implements OnInit{
       otherData : "teregarding coourse",
       active : true,
       createdOn : "2022-10-19",
-      courseName:obj.name
+      courseName:obj.name 
     }
-    console.log("payload",rqPayload);
-    this.userService.generateQrCode(rqPayload).subscribe((baseImage : any)=>{
-      let objectURL = 'data:image/jpeg;base64,' + baseImage.image;
-      this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+    this.userService.generateQrCode(rqPayload).subscribe(( baseImage: any)=>{
+      console.log("baseImage",baseImage);
+      const blobData =  this.convertBase64ToBlobData(baseImage.data);
+      
+        const blob = new Blob([blobData], { type: "image/png" });
+        const url = window.URL.createObjectURL(blob);
+        console.log("url",url);
+        // window.open(url);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Qr_Code';
+        link.click();
     
      },
 
       error=>console.log(error)
       );}
 
+        convertBase64ToBlobData(base64Data: string, contentType: string='image/png', sliceSize=512) {
+        const byteCharacters = atob(base64Data);
+        const byteArrays = [];
+    
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          const slice = byteCharacters.slice(offset, offset + sliceSize);
+    
+          const byteNumbers = new Array(slice.length);
+          for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+    
+          const byteArray = new Uint8Array(byteNumbers);
+    
+          byteArrays.push(byteArray);
+        }
+    
+        const blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+      }
+    
+      
   }
+
+
 
 
 

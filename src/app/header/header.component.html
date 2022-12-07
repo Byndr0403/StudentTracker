@@ -22,17 +22,18 @@
            
 
             <ng-template [ngIf] = "userService.isAthunticated()">
-            <li class="nav-item" >
-                <a class="nav-link active" routerLink="/profile">Profile</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/course">Course</a>
+                </li>
+                <li class="nav-item" > 
+                    <a class="nav-link active" routerLink="/qrCode">QR Code</a>
+                </li>
             
             <li class="nav-item" > 
                 <a class="nav-link active" routerLink="/viewAttandance">View Attandace</a>
             </li>
 
-            <li class="nav-item" > 
-                <a class="nav-link active" routerLink="/qrCode">QR Code</a>
-            </li>
+           
 
             <li class="nav-item" > 
                 <a class="nav-link active" href="" (click)="userService.logout()">Logout</a>
@@ -51,9 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link active" routerLink="/login">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" routerLink="/footer">Contact Us</a>
-            </li>
+
             </ng-template>
             <!-- <li class="nav-item">
                 <a class="nav-link active" routerLink="/gallery">Gallary</a>
