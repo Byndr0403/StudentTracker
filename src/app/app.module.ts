@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
 import { QRcodeComponent } from './qrcode/qrcode.component';
 import { CourseComponent } from './course/course.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -47,7 +48,8 @@ import { CourseComponent } from './course/course.component';
     ScrollViewModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule  
+    HttpClientModule,
+    DataTablesModule   
 ,
  
   ],

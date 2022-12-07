@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class UserService {
     constructor(private http: HttpClient,private router: Router) { }
 
-     //private baseUrl = 'https://round-concept-367712.uc.r.appspot.com'; 
-       private baseUrl =  'http://localhost:8080';
+     private baseUrl = 'https://round-concept-367712.uc.r.appspot.com'; 
+       //private baseUrl =  'http://localhost:8080';
 
     getAll() {
     let  token = sessionStorage.getItem("token");
@@ -70,5 +70,12 @@ export class UserService {
         let obj = {name,desc};
         console.log("course payload",obj);
         return this.http.post<any>(`${this.baseUrl}/course/add`,obj,{headers:header});
+    }
+
+    viewAllAttendance() {
+        let  token = sessionStorage.getItem("token");
+        console.log("token",token);
+        let header = new HttpHeaders().set('token',''+token);
+        return this.http.get<any>(`${this.baseUrl}/attend/viewAll`,{headers:header});
     }
 }
